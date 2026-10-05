@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technology — ArtiStanza</title>
+<meta name="description" content="How ArtiStanza is built: a generic model for every kind of work, paywall rules enforced in the database, and an archive you can export in plain files.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2314110f'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23faf7f2' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="logo" href="index.html">Arti<span>Stanza</span><span class="dot">.</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="primary" id="primary-nav" aria-label="Primary">
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="formats.html">Formats</a>
+      <a href="for-artists.html">For artists</a>
+      <a href="for-readers.html">For readers</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About</a>
+      <a class="nav-cta" href="contact.html">Get early access</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Technology</p>
+      <h1>Built so losing us is survivable</h1>
+      <p class="lede">
+        This page is for the people who actually build publishing tools and for anyone
+        who doesn't trust a platform with their work without checking underneath. It is
+        also the reason the promises on the other pages are structural rather than
+        sentimental.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ THREE PROPERTIES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">What the architecture guarantees</p>
+      <h2>Three decisions, and everything else follows</h2>
+      <div class="rule"></div>
+
+      <div class="grid g3" style="margin-top:34px">
+        <div class="card">
+          <div class="num">1</div>
+          <h3>One uniform kind of thing</h3>
+          <p>Every piece of work &mdash; poem, story, recording, gallery &mdash; is stored
+             the same way. Nothing about the system knows what a poem is.</p>
+          <p class="small muted" style="margin-top:12px">
+            This is why new formats are cheap and why nothing you publish gets stranded
+            in a format-specific corner.
+          </p>
+        </div>
+        <div class="card">
+          <div class="num">2</div>
+          <h3>The paywall is attached to the work</h3>
+          <p>The access rule lives with the content it protects, so it cannot drift out
+             of sync with it. Editing or unpublishing a piece takes its rules with it.</p>
+          <p class="small muted" style="margin-top:12px">
+            This is also why there is no way to end up with an orphaned rule pointing at
+            deleted content.
+          </p>
+        </div>
+        <div class="card">
+          <div class="num">3</div>
+          <h3>One authority on access</h3>
+          <p>Every read of a piece asks a single question of a single component: may this
+             reader open this? The website, search, apps and email jobs all use that one
+             answer.</p>
+          <p class="small muted" style="margin-top:12px">
+            A paywall that can be bypassed by finding the forgotten code path somewhere
+            else isn't a paywall.
+          </p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p><b>What this buys you as a writer:</b> the promise that a locked poem stays
+        locked is enforced in the same place the poem is stored, rather than in whichever
+        screen happened to render it. And because the rule travels with the work, you
+        can never accidentally publish something you meant to keep paid.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODEL ============ -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="eyebrow">The data model</p>
+      <h2>Four parts, in plain language</h2>
+      <div class="rule"></div>
+      <p class="lede">
+        Here is the whole model, without jargon. If you're technical, the actual schema
+        is linked at the bottom and it's readable.
+      </p>
+
+      <div class="grid g2" style="margin-top:32px">
+        <div class="card">
+          <h3>The work itself</h3>
+          <p>One record per piece. Who made it, what it's called, when it went live,
+             whether it's public or locked, and any details specific to that format.
+             A poem and a recording differ only in what they store as extra details.</p>
+        </div>
+        <div class="card">
+          <h3>The content</h3>
+          <p>The body &mdash; the words, or the reference to the audio or images. Stored
+             separately from the record above, because it's the part that changes when
+             you revise something.</p>
+        </div>
+        <div class="card">
+          <h3>The parts</h3>
+          <p>Chapters, stanzas, or tracks, in order, each able to carry its own lock.
+             A poem might have one part; an album has twelve.</p>
+        </div>
+        <div class="card">
+          <h3>The files</h3>
+          <p>Audio and images, stored once and referenced wherever they appear. The same
+             cover image can head your profile, your page, and a post without being
+             uploaded three times.</p>
+        </div>
+      </div>
+
+      <div class="note green">
+        <p><b>Note what isn't there:</b> no columns for "poem", "story", or "album". No
+        table that only makes sense for text. That's the entire trick, and it's why a new
+        format doesn't require changing anything that already works.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACCESS ============ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="grid g-side">
+        <div>
+          <p class="eyebrow">Access control</p>
+          <h2>How a paywall actually gets enforced</h2>
+          <div class="rule"></div>
+          <p class="lede">
+            This is the part worth being precise about, because "we have paywalls" means
+            nothing until you know where the check lives.
+          </p>
+          <p class="muted">
+            Every attempt to open a locked piece resolves to one decision, made in one
+            place, returning a simple answer: full access, a partial preview, or nothing.
+            The same decision governs the website, the API, search results, background
+            email jobs, and any future app. There is no second implementation to forget
+            to update.
+          </p>
+          <ul class="tight" style="margin-top:20px">
+            <li><b>The creator always wins.</b> Authors and credited collaborators can
+              always open their own work, including drafts.</li>
+            <li><b>Unpublished is never visible</b> &mdash; not to followers, not to paying
+              members, not to anybody holding a direct link. Not even by accident.</li>
+            <li><b>Paid access is additive.</b> A subscription, a one-off purchase, and a
+              gifted membership all satisfy the same requirement. Readers never have to
+              wonder which route bought them access.</li>
+            <li><b>Partial access is real, not a stub.</b> A locked story returns its
+              permitted chapters and marks the rest, rather than returning an error.</li>
+            <li><b>Payments and member details are isolated</b> from the public parts of
+              the system, so a mistake in one area can't expose another.</li>
+          </ul>
+          <div class="note gold">
+            <p><b>Why paywall rules live with the content:</b> the common failure in
+            publishing software is a lock that keeps pointing at work you deleted, or a
+            piece that goes live while its lock was never saved. Here, deleting the work
+            deletes the rule with it, in the same operation.</p>
+          </div>
+        </div>
+
+        <aside class="aside">
+          <h3>Verified, not assumed</h3>
+          <p class="small muted" style="margin-top:10px">
+            The schema was applied to a real database and the access rules were tested
+            against real data. Every case below was checked by an assertion that fails
+            loudly if the behaviour changes.
+          </p>
+          <ul class="tight" style="margin-top:14px;font-size:14px">
+            <li>Anonymous reader on a free piece &rarr; full access</li>
+            <li>Anonymous reader on a locked piece &rarr; preview only</li>
+            <li>Signed in, no membership &rarr; preview only</li>
+            <li>Member above the tier &rarr; full access</li>
+            <li>Member below the tier &rarr; preview only</li>
+            <li>One-off purchase &rarr; full access, permanently</li>
+            <li>Draft, viewed by a paying member &rarr; nothing</li>
+            <li>3-chapter story, 2 locked &rarr; non-member sees 1, member sees 3</li>
+            <li>Paging a feed &rarr; no item repeated, none skipped</li>
+          </ul>
+          <p class="small muted" style="margin-top:14px">
+            Five real defects were found and fixed this way, including a paywall rule
+            that silently hid locked work from feeds.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCALE / STACK ============ -->
+  <section class="section section-ink">
+    <div class="wrap">
+      <p class="eyebrow">Under the hood</p>
+      <h2>The stack, briefly</h2>
+      <div class="rule"></div>
+
+      <div class="grid g2" style="margin-top:26px">
+        <div>
+          <ul class="tight">
+            <li><b>PostgreSQL</b> &mdash; the work, the members, the money, and the access rules all live in one well-understood database.</li>
+            <li><b>Python or Node</b> for the API. Undecided at this stage; the data model doesn't constrain it.</li>
+            <li><b>Object storage</b> for audio and images, addressed independently of any page &mdash; so a file survives a redesign.</li>
+            <li><b>A payments provider</b> handling cards, and us handling everything above and below it.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)">
+            <h3 style="color:#f3ece2">Deliberately boring</h3>
+            <p class="muted" style="font-size:15px">
+              Nothing here is exotic, and nothing is a dependency you can't audit. There
+              is no proprietary content format, no closed store of your own work, and no
+              service that can only be read by one company's software.
+            </p>
+            <p class="muted" style="font-size:15px;margin-top:14px">
+              Boring is the goal. This is infrastructure someone has to keep running for
+              other people's writing, and the least interesting choices available are the
+              ones least likely to fail at 3am.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" style="margin-top:36px">
+        <div class="stat"><div class="v">40</div><div class="k">Database tables</div></div>
+        <div class="stat"><div class="v">121</div><div class="k">Indexes</div></div>
+        <div class="stat"><div class="v">18</div><div class="k">Functions</div></div>
+        <div class="stat"><div class="v">9</div><div class="k">Behavioural tests</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MONEY SAFETY ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Money and safety</p>
+      <h2>Where the payments live</h2>
+      <div class="rule"></div>
+      <div class="grid g3">
+        <div class="card">
+          <h3>Kept separate</h3>
+          <p>Card details never touch our systems. They go from the reader to the payment
+             provider, so we never hold something we'd have to worry about losing.</p>
+        </div>
+        <div class="card">
+          <h3>Reconciled line by line</h3>
+          <p>Gross, platform fee, and your net are recorded separately on every
+             transaction. A mismatch should be explainable, and it should be visible.</p>
+        </div>
+        <div class="card">
+          <h3>Idempotent</h3>
+          <p>Payment providers retry webhooks. We record each transaction against a
+             unique key, so a repeated notification can never charge you twice or pay you
+             twice.</p>
+        </div>
+      </div>
+      <div class="note">
+        <p><b>One thing worth saying plainly:</b> we store enough about a payment to pay
+        you and to handle tax. We don't build behavioural profiles from it, we don't sell
+        transaction data, and we don't use your members' payment history to decide what
+        to show other readers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOR BUILDERS ============ -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="grid g-side">
+        <div>
+          <p class="eyebrow">For developers</p>
+          <h2>The actual schema is readable</h2>
+          <div class="rule"></div>
+          <p class="lede">
+            If you build publishing tools, you are welcome to read it and tell me what
+            would break. That invitation is genuine; I'd rather find the problem now.
+          </p>
+          <ul class="tight" style="margin-top:22px">
+            <li><b>Plain SQL, heavily commented.</b> No ORM layer hiding the shape, no
+              generated migrations. You can read the whole thing in an afternoon.</li>
+            <li><b>Reproducible.</b> One file applies cleanly to an empty database, and a
+              second populates it with realistic data.</li>
+            <li><b>The tests are executable, not descriptive.</b> They assert behaviour
+              and fail loudly if a paywall rule regresses.</li>
+            <li><b>Extending it is a documented operation.</b> Adding a format is
+              demonstrated in the test suite itself: register it, add its optional table,
+              and publish into it, with the core untouched.</li>
+          </ul>
+          <div class="note green">
+            <p><b>If you're evaluating this platform, the useful question is what breaks.</b>
+            Ask and I'll answer concretely &mdash; including the things that are genuinely
+            hard, which right now are real-time collaboration on a document and anything
+            resembling a rich text editor that doesn't destroy poetry.</p>
+          </div>
+        </div>
+
+        <aside class="aside">
+          <h3>What I'd want to be asked</h3>
+          <ul class="tight" style="margin-top:10px;font-size:14.5px">
+            <li>What happens to a creator's archive if you fold?</li>
+            <li>Can a reader get their data out, including purchases?</li>
+            <li>What stops a paywall being bypassed via the API?</li>
+            <li>How are failed payments handled without punishing readers?</li>
+            <li>What are you actually charging, and what changes that?</li>
+          </ul>
+          <p class="small muted" style="margin-top:16px">
+            All five have answers, and the first two have code behind them.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="wrap narrow center">
+      <h2>Still writing? Good.</h2>
+      <div class="rule" style="margin-left:auto;margin-right:auto"></div>
+      <p class="lede" style="margin:0 auto 28px">
+        The technology is in service of one idea: a writer should be able to publish
+        here, earn something, and walk away with everything intact.
+      </p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn" href="contact.html">Request an invite</a>
+        <a class="btn ghost" href="about.html">Why this is being built</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a class="logo" href="index.html">Arti<span>Stanza</span><span class="dot">.</span></a>
+        <p class="foot-about">
+          A publishing and membership home for poets, writers, and artists. Publish what
+          you make, choose who sees it, get paid directly.
+        </p>
+      </div>
+      <div class="foot-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="formats.html">Formats</a></li>
+          <li><a href="technology.html">Technology</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Audience</h4>
+        <ul>
+          <li><a href="for-artists.html">For artists</a></li>
+          <li><a href="for-readers.html">For readers</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="contact.html">Get early access</a></li>
+          <li><a href="contact.html">Press kit</a></li>
+          <li><a href="technology.html">Sample schema</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ArtiStanza</div>
+      <div>Press &amp; demos: <span class="kbd">hello@artistanza.com</span></div>
+      <div>artistanza.com</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

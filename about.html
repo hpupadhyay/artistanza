@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — ArtiStanza</title>
+<meta name="description" content="Why ArtiStanza exists, what has already been built, and what is not built yet.">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2314110f'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23faf7f2' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="logo" href="index.html">Arti<span>Stanza</span><span class="dot">.</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="primary" id="primary-nav" aria-label="Primary">
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="formats.html">Formats</a>
+      <a href="for-artists.html">For artists</a>
+      <a href="for-readers.html">For readers</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About</a>
+      <a class="nav-cta" href="contact.html">Get early access</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <h1>Someone who reads a lot of poetry got tired of the software</h1>
+      <p class="lede">
+        Not a mission statement. This is the actual reason, the actual state of things,
+        and the parts I don't know yet.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="grid g-side">
+        <div>
+          <p class="eyebrow">Why</p>
+          <h2>The origin, plainly</h2>
+          <div class="rule"></div>
+          <p class="lede">
+            Every few months I go looking for a poem somebody mentioned. It takes twenty
+            minutes. The writing is usually good and almost always free, but finding it
+            means an archive, an account, an advert for a mattress, and a small article
+            that scrolls away.
+          </p>
+          <p class="muted">
+            That's not a complaint about poetry sites. Several are excellent, and I'd
+            rather someone reading this use one of those. The problem is that the tools
+            were built to maximise time on a page rather than to keep a body of work
+            findable and a writer paid.
+          </p>
+          <p class="muted">
+            So the question was: what would you build if you assumed the writer keeps
+            their own archive forever and will eventually want to leave? Answer that
+            honestly and most of the familiar features stop being features and start
+            being threats.
+          </p>
+          <div class="note">
+            <p><b>The name.</b> Arti and stanza. The two halves of a writer's life, which
+            are apparently not the same job.</p>
+          </div>
+
+          <h3 style="margin-top:36px">Where the idea came from</h3>
+          <ul class="tight" style="margin-top:14px">
+            <li><b>Small press chapbooks.</b> Paying for a printed collection and getting
+              a real object that still exists fifty years later. That's the model.</li>
+            <li><b>Letterboxd-style lists.</b> The value is in the list, not the post. A
+              platform that made the <i>archive</i> the primary unit would suit writers
+              far better.</li>
+            <li><b>Bandcamp.</b> The clearest precedent for fans paying artists directly
+              without a middleman taking a cut of the meaning.</li>
+            <li><b>Subscription fatigue.</b> Nobody has patience left for another
+              subscription. So memberships have to be one at a time and easy to leave.</li>
+          </ul>
+        </div>
+
+        <aside class="aside">
+          <h3>What this is not</h3>
+          <ul class="tight" style="margin-top:10px;font-size:14.5px">
+            <li>Not a social network. There are no follower counts to optimise.</li>
+            <li>Not an AI writing tool. Nothing here generates work for you.</li>
+            <li>Not a self-publishing service. No file conversion, no ISBN, no print.</li>
+            <li>Not trying to replace presses, journals, or readings. It sits underneath
+              them.</li>
+          </ul>
+          <p class="small muted" style="margin-top:16px">
+            Being clear about that has saved more time than any feature so far.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATE OF BUILD ============ -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="eyebrow">Status</p>
+      <h2>What's real, and what isn't</h2>
+      <div class="rule"></div>
+      <p class="lede">
+        Most launch sites hide this. It's the most useful page on the site for anyone
+        deciding whether to trust the rest of it.
+      </p>
+
+      <div class="grid g3" style="margin-top:32px">
+        <div class="card">
+          <div class="tick done">Built</div>
+          <h3>The foundation</h3>
+          <p>The complete data model, written and applied to a live database. Every work
+             type stored the same way, paywall rules attached to the content they
+             protect, payments, memberships, and exports.</p>
+          <p class="small muted" style="margin-top:10px">Tested against real data, not
+             diagrams.</p>
+        </div>
+        <div class="card">
+          <div class="tick done">Built</div>
+          <h3>The access rules</h3>
+          <p>Free, membership, tier, and one-off purchase, all resolved in one place.
+             Drafts genuinely invisible. Partial access per chapter actually works rather
+             than returning a stub.</p>
+          <p class="small muted" style="margin-top:10px">Nine behaviour tests, five real
+             defects found and fixed.</p>
+        </div>
+        <div class="card">
+          <div class="tick doing">In progress</div>
+          <h3>The editor</h3>
+          <p>The writing surface. This is the part I care most about getting right and
+             the part most likely to be late, because a text editor that damages poetry is
+             worse than no editor.</p>
+          <p class="small muted" style="margin-top:10px">Not available to anyone yet.</p>
+        </div>
+        <div class="card">
+          <div class="tick todo">Not started</div>
+          <h3>The API</h3>
+          <p>The service layer between the database and the website. Unblocked by the
+             foundation, but deliberately not written yet.</p>
+        </div>
+        <div class="card">
+          <div class="tick todo">Not started</div>
+          <h3>Payments</h3>
+          <p>Card handling, creator payouts, and the tax arithmetic that makes a small
+             payout viable. Not one line of this is written, so treat the payout timing
+             on the pricing page as intent.</p>
+        </div>
+        <div class="card">
+          <div class="tick todo">Not started</div>
+          <h3>The reading experience</h3>
+          <p>Pages that reflow poetry without destroying line breaks, sync across devices,
+             and stay readable offline. The other half of the product and the half nobody
+             demos.</p>
+        </div>
+      </div>
+
+      <div class="note gold">
+        <p><b>Being direct about this:</b> the platform does not exist yet. What's done
+        is the part that is hardest to change later and most likely to be got wrong by
+        people who build quickly &mdash; how work is stored, and who is allowed to read
+        it. Building that first was a choice, not an accident.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPLES ============ -->
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">How it'll be run</p>
+      <h2>Commitments, in order of importance</h2>
+      <div class="rule"></div>
+      <div class="grid g2" style="margin-top:30px">
+        <div>
+          <ul class="rules">
+            <li><b>Reader relationships are not assets.</b> No selling, renting, or
+              sharing member lists, now or after an acquisition.</li>
+            <li><b>No ads.</b> Not on writers' work, not on readers' feeds, not as a
+              fallback if revenue disappoints.</li>
+            <li><b>Export is a feature, not an exit.</b> One click, plain files, no fee,
+              no retention prompt.</li>
+            <li><b>Grandfathering.</b> If the fee changes, existing members keep their
+              rate.</li>
+            <li><b>One subscription per reader.</b> We'll never ask for two.</li>
+            <li><b>Small team, direct contact.</b> You'll be able to reach an actual
+              person about a problem.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="note green" style="margin-top:0">
+            <p><b>The test I intend to apply to any decision:</b> if a writer published
+            their whole body of work here for five years and I shut the company down
+            tomorrow, would they still have everything, and would they still be able to
+            keep their readers?</p>
+            <p style="margin-top:14px">If the answer is no, the feature doesn't ship,
+            however good the numbers look.</p>
+          </div>
+          <div class="note">
+            <p><b>On the money, plainly:</b> ArtiStanza takes a percentage and nothing
+            else. No listing fee, no pay-to-be-seen, no selling placement, no charging
+            writers for the tools needed to reach their own audience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHO THIS IS FOR ============ -->
+  <section class="section section-alt">
+    <div class="wrap">
+      <p class="eyebrow">The shortlist</p>
+      <h2>Who should join, and who shouldn't</h2>
+      <div class="rule"></div>
+      <div class="grid g2" style="margin-top:30px">
+        <div class="card">
+          <h3>Good fit</h3>
+          <ul class="tight" style="margin-top:12px">
+            <li>Poets and writers who publish regularly or want to start.</li>
+            <li>People with a small existing audience from readings, workshops, or a
+              chapbook.</li>
+            <li>Anyone planning a first or second collection and willing to fund it.</li>
+            <li>Writers whose work spans forms and are tired of maintaining one site per
+              medium.</li>
+            <li>Readers who already pay for at least one thing and want to pay a writer
+              instead of an advertiser.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Poor fit</h3>
+          <ul class="tight" style="margin-top:12px">
+            <li>People who need income from writing this month. There is no version of
+              this that fixes that yet.</li>
+            <li>Anyone looking for a large audience without publishing regularly. No
+              platform can supply that.</li>
+            <li>Writers who want an audience-building tool with engagement analytics and
+              posting advice. Wrong product.</li>
+            <li>People who need print books, editing, or translation handled. We don't
+              do those and won't pretend to.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted center" style="margin-top:30px;max-width:620px;margin-left:auto;margin-right:auto">
+        If you're in the second list, the free tier on every existing platform is a
+        perfectly good answer, and I'd rather you use it than feel pressured.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section section-ink">
+    <div class="wrap narrow center">
+      <p class="eyebrow" style="justify-content:center">Get involved</p>
+      <h2>Help me build the thing I'd have wanted</h2>
+      <div class="rule" style="margin-left:auto;margin-right:auto"></div>
+      <p class="lede muted" style="margin:0 auto 28px">
+        Founding members get to shape what the editor forces you to do and doesn't, what
+        the reader side looks like, and how much the platform takes. That input is worth
+        more right now than money.
+      </p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn" href="contact.html">Request an invite</a>
+        <a class="btn ghost" href="technology.html" style="color:#f3ece2;border-color:#f3ece2">See the technical detail</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a class="logo" href="index.html">Arti<span>Stanza</span><span class="dot">.</span></a>
+        <p class="foot-about">
+          A publishing and membership home for poets, writers, and artists. Publish what
+          you make, choose who sees it, get paid directly.
+        </p>
+      </div>
+      <div class="foot-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="formats.html">Formats</a></li>
+          <li><a href="technology.html">Technology</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Audience</h4>
+        <ul>
+          <li><a href="for-artists.html">For artists</a></li>
+          <li><a href="for-readers.html">For readers</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="contact.html">Get early access</a></li>
+          <li><a href="contact.html">Press kit</a></li>
+          <li><a href="technology.html">Sample schema</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ArtiStanza</div>
+      <div>Press &amp; demos: <span class="kbd">hello@artistanza.com</span></div>
+      <div>artistanza.com</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
